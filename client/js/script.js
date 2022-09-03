@@ -1,11 +1,11 @@
-const MAX_LEVEL = 1; // 5
+const MAX_LEVEL = 2;
 const TIME_TARGET_INTERVAL = 1600;
 const TIME_CHANGE = 200;
-const TIME_ROUND = 1000; // 10000
+const TIME_ROUND = 10000;
 const TIME_STEP = 1000;
 const RAND_TIME_STEP = 400;
 const AMMO_DEFAULT = 30;
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://sw-json-serv.onrender.com';
 
 const holes = document.querySelectorAll('.hole');
 const troopers = document.querySelectorAll('.trooper');
@@ -66,9 +66,7 @@ resetButton.addEventListener('click', resetGame);
 resetTopButton.addEventListener('click', resetTop);
 game.addEventListener('click', blaster);
 
-[closeModalButton, modalContainer].forEach(i => {
-  i.addEventListener('click', closeModal);
-});
+closeModalButton.addEventListener('click', closeModal);
 
 modalDialog.addEventListener('click', e => {
   e.stopPropagation();
@@ -79,8 +77,8 @@ submitForm.addEventListener('click', e => {
 });
 
 submBtnModal.addEventListener('click', () => {
-  // console.log('usernameModal', usernameModal.value);
   saveResultsToServer(usernameModal.value.toUpperCase(), parseInt(resultModal.innerText, 10));
+  closeModal();
 });
 
 troopers.forEach(trooper => trooper.addEventListener('click', shotOnTarget));
@@ -169,15 +167,11 @@ function openModal(scoreTotalValue) {
   modalContainer.classList.add('show-element');
   setTimeout(() => modalDialog.classList.add('show-modal'), 100);
   resultModal.innerText = scoreTotalValue;
-  console.log('modal', scoreTotalValue);
-  // set modal value to scoreTotalValue
 }
 
 function closeModal() {
   modalDialog.classList.remove('show-modal');
   setTimeout(() => modalContainer.classList.remove('show-element'), 900);
-
-  // set modal value to scoreTotalValue
 }
 
 async function getResultsFromServer() {
@@ -190,33 +184,26 @@ async function getResultsFromServer() {
   }
 }
 
-async function saveResultsToServer(username, amount) {
+async function saveResultsToServer(username, currScore) {
   try {
-    //const winner = 'winners';
-    const res1 = await fetch(`${BASE_URL}/winners?name=${username}`);
+    const res = await fetch(`${BASE_URL}/winners?name=${username}`);
+    const data = await res.json();
 
-    const data1 = await res1.json();
-    console.log('da', data1);
-    if (data1[0]) {
-      // only >
-      if (amount >= data1[0].score) {
-        console.log('upd data');
-        const res = await fetch(`${BASE_URL}/winners/${data1[0].id}`, {
+    if (data[0]) {
+      if (currScore > data[0].score) {
+        await fetch(`${BASE_URL}/winners/${data1[0].id}`, {
           headers: { 'Content-Type': 'application/json' },
           method: 'PATCH',
-          body: JSON.stringify({ score: amount }), // amount only
+          body: JSON.stringify({ score: currScore }),
         });
       }
     } else {
-      console.log('write data');
-      const res = await fetch(`${BASE_URL}/winners`, {
+      await fetch(`${BASE_URL}/winners`, {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
-        body: JSON.stringify({ name: username, score: amount }),
+        body: JSON.stringify({ name: username, score: currScore }),
       });
-      const data = await res.json();
     }
-    console.log('data', data1);
     const winners = await getResultsFromServer();
     renderWinners(winners);
   } catch (err) {}
@@ -224,12 +211,7 @@ async function saveResultsToServer(username, amount) {
 
 function renderWinners(winners) {
   winnersContainer.innerHTML = '';
-  //winners.sort
-  console.log(winners);
-  /* .slice(0, 10)
-    .sort((a, b) => b.score - a.score) */
   const newWinners = winners.map(i => `<tr><td>${i.name}</td><td>${i.score}</td></tr>`).join('');
-  console.log(newWinners);
   winnersContainer.innerHTML = '<tr><th>User</th><th>Score</th></tr>' + newWinners;
 }
 
@@ -251,11 +233,10 @@ function finishLevel() {
 
   if (gameLevelValue === MAX_LEVEL + 1) {
     addTopScore();
+    gameOverSound();
     openModal(scoreTotalValue);
     resetGame();
     getResultsFromServer();
-
-    // gameOverSound(); // return
   }
 }
 

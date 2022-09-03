@@ -352,7 +352,7 @@ h1 {
 
 .modal-dialog {
   background-color: #fff;
-  width: 300px;
+  width: 290px;
   height: 260px;
   position: fixed;
   top: calc(50% - 150px);
