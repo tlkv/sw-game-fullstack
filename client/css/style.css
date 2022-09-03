@@ -347,4 +347,77 @@ h1 {
   top: 0;
   left: 0;
   position: fixed;
+  display: none;
+}
+
+.modal-dialog {
+  background-color: #fff;
+  width: 300px;
+  height: 260px;
+  position: fixed;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  transform: scale(0);
+  transition: all 0.6s;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.show-element {
+  display: block;
+}
+
+.show-modal {
+  transform: scale(1);
+}
+
+#winners-table {
+  width: 100%;
+  text-align: center;
+  max-width: 320px;
+  margin: auto
+}
+
+#winners-table td {
+  overflow: hidden;
+  width: 160px;
+  max-width: 160px;
+}
+
+.winners-wrapper {
+  color: white;
+  z-index: 5;
+  font-size: 30px;
+  width: 100%;
+  padding: 10px;
+}
+
+.winners-wrapper h2 {
+  text-align: center;
+  font-size: 34px;
+}
+
+.modal-container h3 {
+  font-size: 32px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group>input {
+  width: 88%;
+  height: 30px;
+}
+
+.form-group>button {
+  width: 45%;
+  height: 30px;
+  font-weight: bold;
 }
