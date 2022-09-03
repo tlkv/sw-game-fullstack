@@ -1,4 +1,4 @@
-const MAX_LEVEL = 2;
+const MAX_LEVEL = 5;
 const TIME_TARGET_INTERVAL = 1600;
 const TIME_CHANGE = 200;
 const TIME_ROUND = 10000;
