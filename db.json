@@ -21,14 +21,34 @@
       "id": 4
     },
     {
-      "name": "MARKW",
+      "name": "USER",
       "score": 6,
       "id": 5
     },
     {
-      "name": "MIKE",
-      "score": 0,
+      "name": "DARTH VADER",
+      "score": 10,
       "id": 6
+    },
+    {
+      "name": "LUKE",
+      "score": 14,
+      "id": 7
+    },
+    {
+      "name": "R2D2",
+      "score": 18,
+      "id": 8
+    },
+    {
+      "name": "ANAKIN",
+      "score": 19,
+      "id": 9
+    },
+    {
+      "name": "MIKE",
+      "score": 2,
+      "id": 10
     }
   ]
 }
