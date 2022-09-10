@@ -5,7 +5,7 @@ const TIME_ROUND = 10000;
 const TIME_STEP = 1000;
 const RAND_TIME_STEP = 400;
 const AMMO_DEFAULT = 30;
-const BASE_URL = 'https://sw-json-serv.onrender.com';
+const BASE_URL = 'https://sw-game-fullstack-production.up.railway.app';
 
 const holes = document.querySelectorAll('.hole');
 const troopers = document.querySelectorAll('.trooper');
