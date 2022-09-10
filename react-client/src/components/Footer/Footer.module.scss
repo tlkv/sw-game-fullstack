@@ -1,0 +1,20 @@
+@use '../../styles/variables';
+
+.footer {
+  height: variables.$footer-height;
+  background-color: #eee;
+  border-bottom: 1px solid #cfcfcf;
+  width: 100%;
+
+  .footerContainer {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 30px;
+    height: 100%;
+  }
+}

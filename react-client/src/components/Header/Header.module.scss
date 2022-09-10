@@ -1,0 +1,27 @@
+@use '../../styles/variables';
+
+.header {
+  height: variables.$header-height;
+  background-color: darkblue;
+  border-bottom: 1px solid #cfcfcf;
+  position: fixed;
+  width: 100%;
+
+  .navbar {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 30px;
+    height: 100%;
+  }
+
+  .headerItem {
+    display: block;
+    max-height: 32px;
+    color: #fff;
+  }
+}
