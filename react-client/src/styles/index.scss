@@ -1,12 +1,13 @@
 @font-face {
   font-family: 'StarJedi-DGRW';
-  src: url('../assets/fonts/Starjedi.ttf') format('truetype');
+  src: url('../assets/fonts/SfDistantGalaxy-0l3d.ttf') format('truetype');
 }
 
 body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  background-color: #000;
 }
 
 code {
@@ -25,4 +26,6 @@ button {
 * {
   box-sizing: border-box;
   font-family: 'StarJedi-DGRW', sans-serif;
+  color: #ffe81f;
+  font-weight: normal;
 }

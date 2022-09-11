@@ -1,3 +1,18 @@
 .gamePage {
   margin: auto;
 }
+
+.shootingRangeWrapper {
+  width: 60%;
+  z-index: 4;
+}
+
+.game {
+  width: 750px;
+  height: 510px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  cursor: url('../../assets/svg/crosshair.svg') 16 16, auto;
+  background: #fff;
+}

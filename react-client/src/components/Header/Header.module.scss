@@ -2,11 +2,11 @@
 
 .header {
   height: variables.$header-height;
-  background-color: darkblue;
-  border-bottom: 1px solid #cfcfcf;
   position: fixed;
   width: 100%;
-
+  border-bottom: 1px solid #ffe81f;
+  background-color: #000;
+  z-index: 2;
   .navbar {
     margin: 0 auto;
     display: flex;
@@ -22,6 +22,6 @@
   .headerItem {
     display: block;
     max-height: 32px;
-    color: #fff;
+    text-decoration: none;
   }
 }

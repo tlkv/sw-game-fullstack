@@ -15,7 +15,7 @@ const Header = () => {
           Homeold
         </NavLink>
         <NavLink to="/counter" className={s.headerItem}>
-          CounterOldZ
+          CounteroldZ
         </NavLink>
       </nav>
     </header>
