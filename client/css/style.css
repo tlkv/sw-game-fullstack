@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'StarJedi-DGRW';
+  src: url('../assets/fonts/SfDistantGalaxy-0l3d.ttf') format('truetype');
+}
+
 html {
   box-sizing: border-box;
   font-size: 14px;
@@ -7,18 +12,29 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Amatic SC", cursive;
+
+  font-weight: 400;
   text-transform: uppercase;
   background-color: #000;
+  color: #fff;
+}
+
+h1, h2 {
+  color: #fff;
+  font-family: 'StarJedi-DGRW', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
 }
 
 .app-title {
   width: 100%;
+  font-size: 40px;
   margin: 0 auto 10px auto;
 }
 
 .main-wrapper {
   max-width: 1280px;
-  margin: 150px auto 0 auto;
+  margin: 60px auto 0 auto;
   padding-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -57,7 +73,7 @@ body {
   z-index: 4;
   width: 38%;
   font-size: 30px;
-  color: #fff;
+  /*   color: #fff; */
   text-align: center;
   padding: 0 1%;
 }
@@ -70,10 +86,8 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 46px;
   line-height: 1;
   margin-bottom: 0;
-  color: #fff;
 }
 
 .metrics-field {
@@ -146,10 +160,13 @@ h1 {
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   font-family: "Amatic SC", cursive;
+}
+
+.start-button {
+  font-weight: bold;
 }
 
 .finished {
@@ -164,8 +181,6 @@ h1 {
 }
 
 .top-score-title {
-  color: #fff;
-  font-size: 40px;
   width: 100%;
   text-align: center;
   margin: 10px auto;
@@ -178,8 +193,8 @@ h1 {
 }
 
 .top-element-wrapper img {
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 66px;
+  max-height: 66px;
   width: auto;
   height: auto;
 }
@@ -220,7 +235,12 @@ h1 {
   .metrics-wrapper {
     width: 100%;
     max-width: 400px;
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .stats-item {
+    width: 47%;
+    align-items: center;
   }
 
   .shooting-range-wrapper {
@@ -252,8 +272,8 @@ h1 {
     font-size: 22px;
   }
 
-  .app-title, .top-score-title {
-    font-size: 32px;
+  .app-title, .top-score-title, .main-wrapper .winners-wrapper h2 {
+    font-size: 22px;
   }
 
 }
@@ -314,7 +334,7 @@ h1 {
 
 .stars,
 .twinkling {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -351,6 +371,7 @@ h1 {
 }
 
 .modal-dialog {
+  color: #000;
   background-color: #fff;
   width: 290px;
   height: 260px;
@@ -375,18 +396,19 @@ h1 {
 #winners-table {
   width: 100%;
   text-align: center;
-  max-width: 320px;
-  margin: auto
+  max-width: 360px;
+  margin: auto;
+  font-size: 22px;
 }
 
 #winners-table td {
   overflow: hidden;
-  width: 160px;
+  /*   width: 160px; */
   max-width: 160px;
 }
 
 .winners-wrapper {
-  color: white;
+  /*  color: white; */
   z-index: 5;
   font-size: 30px;
   width: 100%;
@@ -395,7 +417,7 @@ h1 {
 
 .winners-wrapper h2 {
   text-align: center;
-  font-size: 34px;
+  font-size: 28px;
 }
 
 .modal-container h3 {
@@ -419,5 +441,54 @@ button {
 .form-group>button {
   width: 45%;
   height: 30px;
+  font-weight: bold;
+}
+
+.modal-spinner {
+  z-index: 5;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  pointer-events: none;
+  opacity: 0.8;
+  animation-duration: 1.7s;
+}
+
+#spinner-bott-circle {
+  display: flex;
+  flex-flow: column;
+  width: 80px;
+  height: 80px;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+#loading-spinner {
+  display: block;
+  margin: 0 auto;
+  animation: loading-spinner-spin 2s linear infinite;
+  will-change: transform;
+  border-radius: 50%;
+  background: rgba(200, 200, 200, 0.25);
+  border: 0;
+  box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+}
+
+@keyframes loading-spinner-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hide-loader {
+  display: none;
+}
+
+.alert {
+  color: red;
   font-weight: bold;
 }

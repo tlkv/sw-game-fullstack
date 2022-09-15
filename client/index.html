@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="./favsw.png" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="https://kit.fontawesome.com/2f1b1f79d4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/fontawesome/css/all.min.css">
 </head>
 
 <body>
@@ -40,7 +40,7 @@
         <div class="metrics-wrapper">
             <h1 class="app-title"><i class="fab fa-jedi-order"></i> Star Wars Shooting Range</h1>
             <div class="buttons-wrapper">
-                <button class="start-button app-button">Start Round</button>
+                <button class="start-button app-button start-button">Start Round</button>
                 <button class="reset-button app-button">Reset Game</button>
                 <button class="reset-top-button app-button">Reset Stats</button>
             </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="top-results">
-                <h2 class="top-score-title"><i class="fas fa-jedi"></i> Stats (this device)</h2>
+                <h2 class="top-score-title"><i class="fas fa-jedi"></i> Stats on this device</h2>
                 <div class="last-game"> Last Game Score <span class="last-game-score metrics-field">0</span>
                 </div>
                 <div class="top-element-wrapper">
@@ -83,9 +83,10 @@
             </div>
         </div>
         <div class="winners-wrapper">
-            <h2><i class="fas fa-star"></i> Top-10 (Online Live)</h2>
+            <h2><i class="fas fa-star"></i> Top-10 results online</h2>
             <table id="winners-table" border="1">
                 <tr>
+                    <th>#</th>
                     <th>User</th>
                     <th>Result</th>
                 </tr>
@@ -103,6 +104,13 @@
                 </div>
             </form>
             <p>*Results would be saved only if current score is higher than previous for the same user</p>
+        </div>
+    </div>
+    <div class="modal-spinner hide-loader">
+        <div id="spinner-bott-circle ">
+            <svg id="loading-spinner" class="svg-icon" style="width: 80px; height: 80px;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M96 512c0-19.33 15.67-35 35-35s35 15.67 35 35c0 191.09 154.91 346 346 346s346-154.91 346-346-154.91-346-346-346c-19.33 0-35-15.67-35-35s15.67-35 35-35c229.75 0 416 186.25 416 416S741.75 928 512 928 96 741.75 96 512z" fill="#2F54EB" />
+            </svg>
         </div>
     </div>
     <script src="./js/script.js"></script>

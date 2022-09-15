@@ -5,7 +5,7 @@ const TIME_ROUND = 10000;
 const TIME_STEP = 1000;
 const RAND_TIME_STEP = 400;
 const AMMO_DEFAULT = 30;
-const BASE_URL = 'https://sw-json-serv.onrender.com';
+const BASE_URL = 'https://serv-node-redis.onrender.com/sw';
 
 const holes = document.querySelectorAll('.hole');
 const troopers = document.querySelectorAll('.trooper');
@@ -32,6 +32,7 @@ const resultModal = document.getElementById('result-modal');
 const usernameModal = document.getElementById('username');
 const submBtnModal = document.getElementById('submit-btn--modal');
 const winnersContainer = document.getElementById('winners-table');
+const spinner = document.querySelector('.modal-spinner');
 
 let timeTarget = TIME_TARGET_INTERVAL;
 let scoreTotalValue = 0;
@@ -176,9 +177,12 @@ function closeModal() {
 
 async function getResultsFromServer() {
   try {
-    const res = await fetch(`${BASE_URL}/winners?_sort=score&_order=desc&_limit=10`);
-    const data = await res.json();
-    return data;
+    spinner.classList.remove('hide-loader');
+    const res1 = await fetch(BASE_URL);
+    const data1 = await res1.json();
+    const content = data1?.content || [];
+    spinner.classList.add('hide-loader');
+    return content;
   } catch (err) {
     return [];
   }
@@ -186,33 +190,32 @@ async function getResultsFromServer() {
 
 async function saveResultsToServer(username, currScore) {
   try {
-    const res = await fetch(`${BASE_URL}/winners?name=${username}`);
-    const data = await res.json();
+    spinner.classList.remove('hide-loader');
+    await fetch(BASE_URL, {
+      headers: { 'Content-Type': 'text/plain' },
+      method: 'POST',
+      body: JSON.stringify({ name: username.toUpperCase(), score: currScore }),
+    });
 
-    if (data[0]) {
-      if (currScore > data[0].score) {
-        await fetch(`${BASE_URL}/winners/${data1[0].id}`, {
-          headers: { 'Content-Type': 'application/json' },
-          method: 'PATCH',
-          body: JSON.stringify({ score: currScore }),
-        });
-      }
-    } else {
-      await fetch(`${BASE_URL}/winners`, {
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-        body: JSON.stringify({ name: username, score: currScore }),
-      });
-    }
-    const winners = await getResultsFromServer();
-    renderWinners(winners);
-  } catch (err) {}
+    setTimeout(async () => {
+      const winners = await getResultsFromServer();
+      renderWinners(winners);
+      spinner.classList.add('hide-loader');
+    }, 500);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function renderWinners(winners) {
-  winnersContainer.innerHTML = '';
-  const newWinners = winners.map(i => `<tr><td>${i.name}</td><td>${i.score}</td></tr>`).join('');
-  winnersContainer.innerHTML = '<tr><th>User</th><th>Score</th></tr>' + newWinners;
+  if (winners.length > 0) {
+    const newWinners = winners
+      .map((i, ind) => `<tr><td>${ind + 1}</td><td>${i.name}</td><td>${i.score}</td></tr>`)
+      .join('');
+    winnersContainer.innerHTML = '<tr><th>#</th><th>User</th><th>Score</th></tr>' + newWinners;
+  } else {
+    winnersContainer.innerHTML = '<div class="alert">No game records or server error</div>';
+  }
 }
 
 function finishLevel() {
@@ -236,7 +239,6 @@ function finishLevel() {
     gameOverSound();
     openModal(scoreTotalValue);
     resetGame();
-    getResultsFromServer();
   }
 }
 
