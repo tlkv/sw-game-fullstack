@@ -444,7 +444,7 @@ button {
   font-weight: bold;
 }
 
-.modal-spinner {
+#modal-spin {
   z-index: 5;
   position: fixed;
   bottom: 20px;
@@ -452,26 +452,10 @@ button {
   pointer-events: none;
   opacity: 0.8;
   animation-duration: 1.7s;
-}
-
-#spinner-bott-circle {
-  display: flex;
-  flex-flow: column;
-  width: 80px;
-  height: 80px;
-  justify-content: space-around;
-  align-items: flex-end;
-}
-
-#loading-spinner {
-  display: block;
-  margin: 0 auto;
+  width: 70px;
+  height: 70px;
+  background: url('../assets/svg/star-wars-imperial-logo.svg') center /100% no-repeat;
   animation: loading-spinner-spin 2s linear infinite;
-  will-change: transform;
-  border-radius: 50%;
-  background: rgba(200, 200, 200, 0.25);
-  border: 0;
-  box-shadow: 0 0 20px rgb(0 0 0 / 10%);
 }
 
 @keyframes loading-spinner-spin {

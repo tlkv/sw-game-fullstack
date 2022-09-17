@@ -32,7 +32,7 @@ const resultModal = document.getElementById('result-modal');
 const usernameModal = document.getElementById('username');
 const submBtnModal = document.getElementById('submit-btn--modal');
 const winnersContainer = document.getElementById('winners-table');
-const spinner = document.querySelector('.modal-spinner');
+const spinner = document.getElementById('modal-spin');
 
 let timeTarget = TIME_TARGET_INTERVAL;
 let scoreTotalValue = 0;
