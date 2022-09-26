@@ -1,0 +1,3 @@
+# sw-game-fullstack
+Remake of my old Vanilla JS game. I'd probably rewrite it to react at some point...
+Main version is in ```client``` folder
