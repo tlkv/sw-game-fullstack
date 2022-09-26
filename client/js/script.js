@@ -178,9 +178,8 @@ function closeModal() {
 async function getResultsFromServer() {
   try {
     spinner.classList.remove('hide-loader');
-    const res1 = await fetch(BASE_URL);
-    const data1 = await res1.json();
-    const content = data1?.content || [];
+    const res = await axios.get(BASE_URL);
+    const content = res?.data?.content || [];
     spinner.classList.add('hide-loader');
     return content;
   } catch (err) {
@@ -191,12 +190,7 @@ async function getResultsFromServer() {
 async function saveResultsToServer(username, currScore) {
   try {
     spinner.classList.remove('hide-loader');
-    await fetch(BASE_URL, {
-      headers: { 'Content-Type': 'text/plain' },
-      method: 'POST',
-      body: JSON.stringify({ name: username.toUpperCase(), score: currScore }),
-    });
-
+    await axios.post(BASE_URL, JSON.stringify({ name: username.toUpperCase(), score: currScore }));
     setTimeout(async () => {
       const winners = await getResultsFromServer();
       renderWinners(winners);
